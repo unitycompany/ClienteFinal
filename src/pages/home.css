@@ -141,7 +141,7 @@
     content: '';
     width: 97.5%;
     height: 70%;
-    border-radius: 12px 0 0 12px;
+    border-radius: 12px;
     background-color: var(--color--gray);
     position: absolute;
     right: 0;
