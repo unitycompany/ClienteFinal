@@ -4,10 +4,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
     flex-direction: column;
     padding: 0 5%;
     height: 50vh;
-    background-color: var(--color--black);
 }
 
 .rodape-text{

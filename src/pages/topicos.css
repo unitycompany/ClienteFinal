@@ -7,9 +7,11 @@
     justify-content: center;
     flex-direction: column;
     gap: 50px;
-    background-color: var(--color--black);
     max-width: 1140px;
+    position: relative;
+    z-index: 1;
 }
+
 
 .topicos-title h1{
     font-size: 2rem;

@@ -7,7 +7,8 @@
     flex-direction: column;
     height: 100vh;
     gap: 50px;
-    background-color: var(--color--black);
+    position: relative;
+    
 }
 
 .sobre-texts{
@@ -52,9 +53,9 @@
 }
 
 .sobre-carrossel{
-    width: 100%;
+    width: 100vw;
     height: 50%;
-    margin: 0 auto;
+    margin: 0 -5%;
     overflow: hidden;
 }
 
