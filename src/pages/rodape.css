@@ -3,10 +3,10 @@
     width: 1140px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: column;
     padding: 0 5%;
-    height: 40vh;
+    height: 50vh;
     background-color: var(--color--black);
 }
 
