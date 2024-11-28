@@ -85,16 +85,24 @@
         font-size: 1.5rem;
     }
 
+    .depoimentos-container{
+        gap: 10px;
+        height: auto;
+    }
 
     .depoimentos-card{
-        width: 45%;
+        width: 100%;
         flex-direction: column-reverse;
-        gap: 10px;
+        gap: 20px;
+        align-items: center;
+        border: 1px solid var(--color--red);
+        padding: 20px 0px;
     }
 
     .depoimentos-card p{
         font-size: .8rem;
         text-align: justify;
+        width: 80%;
     }
 
     .depoimentos-card div div:nth-child(1){
