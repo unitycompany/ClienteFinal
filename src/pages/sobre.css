@@ -1,0 +1,65 @@
+.sobre{
+    width: 100%;
+    max-width: 1140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 50px;
+    background-color: var(--color--black);
+}
+
+.sobre-texts{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 0 5%;
+}
+
+.sobre-left{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sobre-left h1{
+    font-size: 2rem;
+    line-height: 120%;
+    color: var(--color--white);
+}
+
+.sobre-left h1 b{
+    color: var(--color--red);
+}
+
+.sobre-right{
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sobre-right p{
+    opacity: .6;
+    font-size: 1.2rem;
+    line-height: 100%;
+    color: var(--color--white);
+}
+
+.sobre-carrossel{
+    width: 100%;
+    height: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
