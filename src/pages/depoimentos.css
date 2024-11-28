@@ -74,3 +74,35 @@
     justify-content: center;
     gap: 2px;
 }
+
+@media (max-width: 768px){
+    .depoimentos{
+        height: auto;
+        padding: 10% 2.5%;
+    }
+
+    .depoimentos-text h1{
+        font-size: 1.5rem;
+    }
+
+
+    .depoimentos-card{
+        width: 45%;
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .depoimentos-card p{
+        font-size: .8rem;
+        text-align: justify;
+    }
+
+    .depoimentos-card div div:nth-child(1){
+        width: 30px;
+        height: 30px;
+    }
+
+    .depoimentos-card h2{
+        font-size: .9rem;
+    }
+}

@@ -47,3 +47,15 @@
     opacity: 1!important;
     color: var(--color--white);
 }
+
+@media (max-width: 768px){
+    .rodape{
+        height: auto;
+        padding: 10% 2.5%;
+    }
+
+    .rodape-text h1{
+        font-size: 1.3rem;
+        width: 35%;
+    }
+}

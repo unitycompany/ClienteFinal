@@ -64,3 +64,33 @@
     height: 50vh;
     object-fit: cover;
 }
+
+@media (max-width: 768px){
+    .sobre{
+        height: auto;
+        padding: 10% 2.5%;
+    }
+
+    .sobre-texts{
+        flex-direction: column;
+    }
+
+    .sobre-left{
+        width: 100%;
+        text-align: center;
+    }
+
+    .sobre-left h1{
+        font-size: 1.5rem;
+    }
+
+    .sobre-right{
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .sobre-right p {
+        font-size: 1rem;
+    }
+}

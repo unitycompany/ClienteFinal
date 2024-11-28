@@ -66,3 +66,28 @@
     opacity: .6;
     line-height: 100%;
 }
+
+@media (max-width: 768px){
+    .porques{
+        height: auto;
+        padding: 10% 2.5%;
+        gap: 30px;
+    }
+
+    .porques-text h1{
+        font-size: 1.5rem;
+        width: 95%;
+    }
+
+    .porques-container{
+        flex-wrap: wrap;
+        
+    }
+
+    .porques-cards{
+        width: 45%;
+        align-items: center;
+        text-align: center;
+    }
+
+}

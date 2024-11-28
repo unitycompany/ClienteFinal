@@ -72,3 +72,36 @@
     opacity: .6;
     line-height: 100%;
 }
+
+@media (max-width: 768px){
+    .steelframe{
+        flex-direction: column;
+        height: auto;
+        padding: 10% 2.5%;
+    }
+
+    .steelframe-images{
+        width: 100%;
+    }
+
+    .steelframe-images span{
+        width: 70px;
+        height: 40px;
+    }
+
+    .steelframe-texts {
+        width: 100%;
+        align-items: center;
+    }
+
+    .steelframe-texts h1{
+        font-size: 1.5rem;
+        text-align: center;
+        width: 95%;
+    }
+
+    .steelframe-texts p{
+        text-align: center;
+        font-size: 1rem;
+    }
+}
