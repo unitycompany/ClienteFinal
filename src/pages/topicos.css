@@ -86,11 +86,12 @@
     }
 
     .topicos-container{
-        height: 120vh;
+        height: auto;
     }
 
     .topicos-card{
         width: 31%;
+        gap: 30px;
     }
 }
 
