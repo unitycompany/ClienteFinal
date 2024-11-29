@@ -63,6 +63,128 @@
                     <button>Enviar meus dados</button>
                     <p>As informações serão usadas apenas para meio de contato, qualquer duvida acesse nossa <a href="#">politica de privacidade</a>.</p>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const formElement = document.querySelector('#contactForm');
+                        const submitButton = formElement.querySelector('button');
+                
+                        formElement.addEventListener('submit', function (event) {
+                            event.preventDefault(); 
+                
+                            const name = formElement.querySelector('#name').value.trim();
+                            const email = formElement.querySelector('#email').value.trim();
+                            const whatsapp = formElement.querySelector('#tel').value.trim();
+                            const areaConstruida = formElement.querySelector('select').value;
+                
+                            if (!name || !email || !whatsapp || areaConstruida === "Qual a área construida do seu projeto?") {
+                                alert("Por favor, preencha todos os campos corretamente.");
+                                return;
+                            }
+                
+                            displayLoadingOverlay(true);
+                
+                            const utms = getUTMs();
+                            const utmSource = utms.utm_source || 'orgânico';
+                            const utmMedium = utms.utm_medium || '';
+                            const utmCampaign = utms.utm_campaign || '';
+                            const utmContent = utms.utm_content || '';
+                            const utmTerm = utms.utm_term || '';
+                
+                            const pageReferrer = window.location.href || 'URL não encontrada';
+                
+                            if (areaConstruida === 'descartado') {
+                                setTimeout(() => {
+                                    displayLoadingOverlay(false);
+                                    alert('Formulário enviado com sucesso!');
+                                    formElement.reset();
+                                }, 1000);
+                                console.log('Lead descartado: obra sem projeto.');
+                                return;
+                            }
+                
+                            const payload = {
+                                rules: {
+                                    update: "false",
+                                    filter_status_update: "open",
+                                    equal_pipeline: "true",
+                                    status: "open",
+                                    validate_cpf: "false",
+                                },
+                                leads: [
+                                    {
+                                        id: "FastDrywall_Lead",
+                                        user: name,
+                                        email: email,
+                                        name: name,
+                                        personal_phone: whatsapp,
+                                        mobile_phone: whatsapp,
+                                        last_conversion: {
+                                            source: utmSource
+                                        },
+                                        custom_fields: {
+                                            areaConstruida,
+                                            uniqueId: generateUniqueId(),
+                                            utm_source: utmSource,
+                                            utm_medium: utmMedium,
+                                            utm_campaign: utmCampaign,
+                                            utm_content: utmContent,
+                                            utm_term: utmTerm,
+                                            page_referrer: pageReferrer
+                                        }
+                                    }
+                                ]
+                            };
+                
+                            fetch('https://app.pipe.run/webservice/integradorJson?hash=910f50d4-0c50-4e04-880a-f5950cd33dc6', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(payload)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Success:', data);
+                
+                                displayLoadingOverlay(false);
+                                alert('Formulário enviado com sucesso!');
+                                formElement.reset();
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                                displayLoadingOverlay(false);
+                                alert('Houve um erro ao enviar o formulário.');
+                            });
+                        });
+                
+                        function generateUniqueId() {
+                            return new Date().getTime().toString();
+                        }
+                
+                        function getUTMs() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            return {
+                                utm_source: urlParams.get('utm_source'),
+                                utm_medium: urlParams.get('utm_medium'),
+                                utm_campaign: urlParams.get('utm_campaign'),
+                                utm_content: urlParams.get('utm_content'),
+                                utm_term: urlParams.get('utm_term'),
+                            };
+                        }
+                
+                        function displayLoadingOverlay(show) {
+                            if (show) {
+                                // Mostra um overlay de carregamento
+                                console.log("Mostrando overlay de carregamento...");
+                            } else {
+                                // Remove o overlay de carregamento
+                                console.log("Removendo overlay de carregamento...");
+                            }
+                        }
+                    });
+                </script>
+                
             </form>
 
         </div>
