@@ -67,7 +67,7 @@
 .topicos-card div p{
     font-size: .9rem;
     line-height: 100%;
-    text-align: center;
+    text-align: justify;
     opacity: .6;
     width: 100%;
 }
