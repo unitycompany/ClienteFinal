@@ -27,7 +27,7 @@
 }
 
 .rodape-text h1 b{
-    color: var(--color--red);
+    color: var(--color--red--light);
 }
 
 .rodape-politica{
