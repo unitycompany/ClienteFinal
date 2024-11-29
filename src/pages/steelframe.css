@@ -58,10 +58,23 @@
     gap: 20px;
 }
 
+.steelframe-texts div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
 .steelframe-texts ol{
-    columns: 2;
-    list-style-type: disc;
+    columns: 1;
+    list-style-image: url('../assets/certo.png');
     margin-left: 20px;
+    width: 50%;
+}
+
+.steelframe-texts ol:nth-child(n + 2){
+    list-style-image: url('../assets/check.png');
 }
 
 .steelframe-texts ol li{
