@@ -7,7 +7,7 @@
     justify-content: center;
     flex-direction: column;
     padding: 0 5%;
-    gap: 15px;
+    gap: 35px;
 }
 
 .porques-text{
@@ -59,6 +59,7 @@
 .porques-cards h2{
     font-size: 1.3rem;
     color: var(--color--red);
+    line-height: 100%;
 }
 
 .porques-cards p{

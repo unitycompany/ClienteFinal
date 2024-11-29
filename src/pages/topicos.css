@@ -25,8 +25,8 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: 70%;
-    gap: 40px;
+    height: 80%;
+    gap: 20px;
 }
 
 .topicos-card{
@@ -34,7 +34,8 @@
     height: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 30px 0 0 0;
     flex-direction: column;
     border-radius: 12px;
     background-color: var(--color--gray);
@@ -59,6 +60,7 @@
 .topicos-card div h2{
     font-size: 1.3rem;
     line-height: 100%;
+    text-align: center;
 }
 
 .topicos-card div p{
@@ -66,7 +68,7 @@
     line-height: 100%;
     text-align: center;
     opacity: .6;
-    width: 90%;
+    width: 100%;
 }
 
 .topicos-card div button{
@@ -76,8 +78,14 @@
 }
 
 @media (min-width: 768px) and (max-width: 1240px){
+    .topicos{
+        gap: 50px;
+        height: auto;
+        padding: 10% 5%;
+    }
+
     .topicos-container{
-        gap: 30px;
+        height: 120vh;
     }
 
     .topicos-card{
