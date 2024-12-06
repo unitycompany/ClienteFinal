@@ -63,46 +63,69 @@
                         <input type="tel" id="tel" placeholder="WhatsApp">
                     </div>
                     <input type="email" id="email" placeholder="E-mail">
-                    <select>
+                    <select id="areaConstruida">
                         <option selected disabled>Qual a área construida do seu projeto?</option>
                         <option value="descartado">Não tenho projeto</option>
                         <option value="50-150">50m² a 150m²</option>
                         <option value="150-300">150m² a 300m²</option>
                         <option value="+300">mais de 300m²</option>
                     </select>
+                    <select id="tipoObra" style="display: none;">
+                        <option selected disabled>Qual segmento da sua obra?</option>
+                        <option value="residencial">Residencial</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="publica">Pública</option>
+                    </select>
                     <button>Enviar meus dados</button>
-                    <p>As informações serão usadas apenas para meio de contato, qualquer duvida acesse nossa <a href="#">politica de privacidade</a>.</p>
+                    <p>As informações serão usadas apenas para meio de contato, qualquer dúvida acesse nossa <a href="#">política de privacidade</a>.</p>
                 </div>
-
+            
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         const formElement = document.querySelector('#contactForm');
-                        const submitButton = formElement.querySelector('button');
-                
+                        const areaConstruidaSelect = formElement.querySelector('#areaConstruida');
+                        const tipoObraSelect = formElement.querySelector('#tipoObra');
+            
+                        // Exibir ou ocultar o campo "Qual seu tipo de obra?"
+                        areaConstruidaSelect.addEventListener('change', function () {
+                            if (this.value === 'descartado') {
+                                tipoObraSelect.style.display = 'none';
+                                tipoObraSelect.value = ''; // Limpar o valor
+                            } else {
+                                tipoObraSelect.style.display = 'block';
+                            }
+                        });
+            
                         formElement.addEventListener('submit', function (event) {
-                            event.preventDefault(); 
-                
+                            event.preventDefault();
+            
                             const name = formElement.querySelector('#name').value.trim();
                             const email = formElement.querySelector('#email').value.trim();
                             const whatsapp = formElement.querySelector('#tel').value.trim();
-                            const areaConstruida = formElement.querySelector('select').value;
-                
+                            const areaConstruida = areaConstruidaSelect.value;
+                            const tipoObra = tipoObraSelect.style.display === 'block' ? tipoObraSelect.value : null;
+            
                             if (!name || !email || !whatsapp || areaConstruida === "Qual a área construida do seu projeto?") {
                                 alert("Por favor, preencha todos os campos corretamente.");
                                 return;
                             }
-                
+            
+                            if (tipoObraSelect.style.display === 'block' && !tipoObra) {
+                                alert("Por favor, selecione o tipo de obra.");
+                                return;
+                            }
+            
                             displayLoadingOverlay(true);
-                
+            
                             const utms = getUTMs();
                             const utmSource = utms.utm_source || 'orgânico';
                             const utmMedium = utms.utm_medium || '';
                             const utmCampaign = utms.utm_campaign || '';
                             const utmContent = utms.utm_content || '';
                             const utmTerm = utms.utm_term || '';
-                
                             const pageReferrer = window.location.href || 'URL não encontrada';
-                
+            
                             if (areaConstruida === 'descartado') {
                                 setTimeout(() => {
                                     displayLoadingOverlay(false);
@@ -112,7 +135,7 @@
                                 console.log('Lead descartado: obra sem projeto.');
                                 return;
                             }
-                
+            
                             const payload = {
                                 rules: {
                                     update: "false",
@@ -134,6 +157,7 @@
                                         },
                                         custom_fields: {
                                             areaConstruida,
+                                            tipoObra: tipoObra || "Sem obra definida",
                                             uniqueId: generateUniqueId(),
                                             utm_source: utmSource,
                                             utm_medium: utmMedium,
@@ -145,7 +169,7 @@
                                     }
                                 ]
                             };
-                
+            
                             fetch('https://app.pipe.run/webservice/integradorJson?hash=910f50d4-0c50-4e04-880a-f5950cd33dc6', {
                                 method: 'POST',
                                 headers: {
@@ -156,10 +180,11 @@
                             .then(response => response.json())
                             .then(data => {
                                 console.log('Success:', data);
-                
+            
                                 displayLoadingOverlay(false);
                                 alert('Formulário enviado com sucesso!');
                                 formElement.reset();
+                                tipoObraSelect.style.display = 'none'; // Esconde o select novamente
                             })
                             .catch((error) => {
                                 console.error('Error:', error);
@@ -167,11 +192,11 @@
                                 alert('Houve um erro ao enviar o formulário.');
                             });
                         });
-                
+            
                         function generateUniqueId() {
                             return new Date().getTime().toString();
                         }
-                
+            
                         function getUTMs() {
                             const urlParams = new URLSearchParams(window.location.search);
                             return {
@@ -182,20 +207,19 @@
                                 utm_term: urlParams.get('utm_term'),
                             };
                         }
-                
+            
                         function displayLoadingOverlay(show) {
                             if (show) {
-                                // Mostra um overlay de carregamento
                                 console.log("Mostrando overlay de carregamento...");
                             } else {
-                                // Remove o overlay de carregamento
                                 console.log("Removendo overlay de carregamento...");
                             }
                         }
                     });
                 </script>
-                
             </form>
+            
+            
 
         </div>
         <div class="home-images">
@@ -436,7 +460,7 @@
     <footer class="rodape" id="rodape">
         <div class="background-black"></div>
         <div class="rodape-text">
-            <h1>Não perca mais tempo, compre agora na <b>Fast Drywall e Steel Frame</b>, é só clicar no botão abaixo</h1>
+            <h1>Não perca mais tempo<br> compre agora na <b>Fast Drywall e Steel Frame</b><br> é só clicar no botão abaixo</h1>
             <button onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })">Solicitar meu orçamento agora!</button>
         </div>
         <div class="rodape-politica">
